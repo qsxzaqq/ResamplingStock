@@ -83,6 +83,41 @@ fn main() {
             io::stdout().write(format!("{}{:02}:{:02}:{:02}\n", &datetime[0..11], hour, minute, second).as_bytes()).unwrap();
             io::stdout().flush().unwrap();
             buffer.clear();
+        } else if mode.starts_with("30min") {
+            let mut hour = datetime[11..13].parse::<i32>().unwrap();
+            let mut minute = datetime[14..16].parse::<i32>().unwrap();
+            let mut second = datetime[17..19].parse::<i32>().unwrap();
+    
+            if minute == 0 {
+                second = 0;
+            } else if minute > 0 && minute <= 30 {
+                minute = 30;
+                second = 0;
+            } else if minute > 30 {
+                hour += 1;
+                minute = 0;
+                second = 0;
+            }
+    
+            io::stdout().write(format!("{}{:02}:{:02}:{:02}\n", &datetime[0..11], hour, minute, second).as_bytes()).unwrap();
+            io::stdout().flush().unwrap();
+            buffer.clear();
+        } else if mode.starts_with("60min") {
+            let mut hour = datetime[11..13].parse::<i32>().unwrap();
+            let mut minute = datetime[14..16].parse::<i32>().unwrap();
+            let mut second = datetime[17..19].parse::<i32>().unwrap();
+    
+            if minute == 0 {
+                second = 0;
+            } else if minute > 0 {
+                hour += 1;
+                minute = 0;
+                second = 0;
+            }
+    
+            io::stdout().write(format!("{}{:02}:{:02}:{:02}\n", &datetime[0..11], hour, minute, second).as_bytes()).unwrap();
+            io::stdout().flush().unwrap();
+            buffer.clear();
         }
     }
 }
