@@ -1,0 +1,17 @@
+<functions>
+    <function>
+        <type>executable_pool</type>
+        <name>resampling_stock</name>
+        <return_type>DateTime</return_type>
+        <argument>
+            <type>DateTime</type>
+            <name>value</name>
+        </argument>
+        <argument>
+            <type>String</type>
+            <name>type</name>
+        </argument>
+        <format>TabSeparated</format>
+        <command>resampling_stock</command>
+    </function>
+</functions>
