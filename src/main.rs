@@ -9,7 +9,20 @@ fn main() {
         let datetime = &buffer[0..19];
         let mode = &buffer[20..];
     
-        if mode.starts_with("5min") {
+        if mode.starts_with("1min") {
+            let hour = datetime[11..13].parse::<i32>().unwrap();
+            let mut minute = datetime[14..16].parse::<i32>().unwrap();
+            let mut second = datetime[17..19].parse::<i32>().unwrap();
+    
+            if hour == 9 && minute == 30 {
+                minute += 1;
+            }
+            second = 0;
+
+            io::stdout().write(format!("{}{:02}:{:02}:{:02}\n", &datetime[0..11], hour, minute, second).as_bytes()).unwrap();
+            io::stdout().flush().unwrap();
+            buffer.clear();
+        } else if mode.starts_with("5min") {
             let mut hour = datetime[11..13].parse::<i32>().unwrap();
             let mut minute = datetime[14..16].parse::<i32>().unwrap();
             let mut second = datetime[17..19].parse::<i32>().unwrap();
